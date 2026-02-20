@@ -1,0 +1,24 @@
+{
+  "short": {
+    "format": "SHORTS 9:16",
+    "topic": "OTP late drama",
+    "scenes": [
+      "Short Comedy - Funny entry",
+      "Short Comedy - Ultimate funny ending",
+      "Short Comedy - Emotional drama",
+      "Short Comedy - Funny entry"
+    ]
+  },
+  "long": {
+    "format": "LONG 16:9",
+    "topic": "Indian parents vs mobile",
+    "scenes": [
+      "Long Comedy - Unexpected twist",
+      "Long Comedy - Ultimate funny ending",
+      "Long Comedy - Funny entry",
+      "Long Comedy - Overacting moment",
+      "Long Comedy - Funny entry",
+      "Long Comedy - Overacting moment"
+    ]
+  }
+}

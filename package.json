@@ -1,0 +1,30 @@
+{
+  "name": "nitish-yt-auto-upload",
+  "version": "1.0.0",
+  "description": "AI Auto Generated YouTube Shorts with Scheduler",
+  "main": "scheduler.js",
+  "scripts": {
+    "start": "node scheduler.js",
+    "upload": "node upload.js",
+    "generate": "node index.js"
+  },
+  "keywords": [
+    "youtube",
+    "automation",
+    "ai",
+    "shorts",
+    "scheduler"
+  ],
+  "author": "Nitish",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.6.8",
+    "dotenv": "^16.4.5",
+    "express": "^5.2.1",
+    "ffmpeg-static": "^5.2.0",
+    "fluent-ffmpeg": "^2.1.2",
+    "googleapis": "^134.0.0",
+    "node-cron": "^4.2.1",
+    "openai": "^4.0.0"
+  }
+}

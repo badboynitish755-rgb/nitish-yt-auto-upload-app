@@ -1,0 +1,4 @@
+file 'C:\Users\admin\Desktop\nitish-yt-auto-upload-app\videos\short_scene1.mp4'
+file 'C:\Users\admin\Desktop\nitish-yt-auto-upload-app\videos\short_scene2.mp4'
+file 'C:\Users\admin\Desktop\nitish-yt-auto-upload-app\videos\short_scene3.mp4'
+file 'C:\Users\admin\Desktop\nitish-yt-auto-upload-app\videos\short_scene4.mp4'
