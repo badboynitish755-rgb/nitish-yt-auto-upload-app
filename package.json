@@ -1,75 +1,16 @@
-require("dotenv").config();
-const cron = require("node-cron");
-const { exec } = require("child_process");
-const express = require("express");
-
-const app = express();
-
-// 🔥 Render ke liye important PORT
-const PORT = process.env.PORT || 3000;
-
-console.log("🚀 AI YouTube Automation Started (Cloud Mode)");
-
-// ✅ Function jo index.js run karega
-function runAutomation() {
-  console.log("⏳ Running AI Video Automation...");
-
-  exec("node index.js", (error, stdout, stderr) => {
-    if (error) {
-      console.error(❌ Error: ${error.message});
-      return;
-    }
-    if (stderr) {
-      console.error(⚠️ Stderr: ${stderr});
-      return;
-    }
-    console.log(✅ Success:\n${stdout});
-  });
+{
+  "name": "nitish-yt-auto-upload-app",
+  "version": "1.0.0",
+  "main": "scheduler.js",
+  "scripts": {
+    "start": "node scheduler.js"
+  },
+  "engines": {
+    "node": "18.x"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.0",
+    "express": "^4.18.2",
+    "node-cron": "^3.0.3"
+  }
 }
-
-// 🕘 9 AM India Time
-cron.schedule(
-  "0 9 * * *",
-  () => {
-    console.log("🕘 9 AM Upload Triggered");
-    runAutomation();
-  },
-  {
-    timezone: "Asia/Kolkata",
-  }
-);
-
-// 🕒 3 PM India Time
-cron.schedule(
-  "0 15 * * *",
-  () => {
-    console.log("🕒 3 PM Upload Triggered");
-    runAutomation();
-  },
-  {
-    timezone: "Asia/Kolkata",
-  }
-);
-
-// 🕘 9 PM India Time
-cron.schedule(
-  "0 21 * * *",
-  () => {
-    console.log("🕘 9 PM Upload Triggered");
-    runAutomation();
-  },
-  {
-    timezone: "Asia/Kolkata",
-  }
-);
-
-// 🔥 Health Check Route (Render ke liye zaroori)
-app.get("/", (req, res) => {
-  res.send("🔥 AI YouTube Automation Running Successfully!");
-});
-
-// 🔥 Server Start
-app.listen(PORT, () => {
-  console.log(🌍 Server running on port ${PORT});
-  console.log("📅 Scheduler Running...");
-});
