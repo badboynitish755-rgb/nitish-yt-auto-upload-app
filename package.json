@@ -1,6 +1,7 @@
-
+{
   "name": "nitish-yt-auto-upload-app",
   "version": "1.0.0",
+  "description": "AI YouTube automation app",
   "main": "scheduler.js",
   "scripts": {
     "start": "node scheduler.js"
