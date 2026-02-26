@@ -21,20 +21,22 @@ function makeVideo(text, voiceFile, output) {
   console.log("🎬 Creating:", output);
 
   const cmd =
-    "ffmpeg -y -loop 1 -i images/bg.png -i " + voiceFile + " -i audio/bg.mp3 " +
-    "-filter_complex \"[2:a]volume=0.15[a2];[1:a][a2]amix=inputs=2:duration=shortest[aout]\" " +
-    "-map 0:v -map \"[aout]\" " +
-    "-vf \"scale=1080:1920,drawtext=fontfile=C\\\\:/Windows/Fonts/arial.ttf:" +
-    "text='" + txt + "':fontcolor=white:fontsize=60:" +
-    "x=(w-text_w)/2:y=(h-text_h)/2\" " +
-    "-c:v libx264 -tune stillimage -shortest " + output;
+    `ffmpeg -y -loop 1 -i images/bg.png -i ${voiceFile} -i audio/bg.mp3 ` +
+    -filter_complex "[2:a]volume=0.15[a2]; +
+    [1:a][a2]amix=inputs=2:duration=shortest[aout]; +
+    drawtext=fontfile=C\\\\:/Windows/Fonts/arial.ttf: +
+    text='${txt}':fontcolor=white:fontsize=60: +
+    x=(w-text_w)/2:y=(h-text_h)/2 +
+    `" -map 0:v -map "[aout]" ` +
+    `-vf scale=1080:1920 ` +
+    -c:v libx264 -tune stillimage -shortest ${output};
 
   execSync(cmd, { stdio: "inherit" });
 }
 
 for (let i = 0; i < script.short.scenes.length; i++) {
-  const voicePath = "voices/scene" + (i + 1) + ".mp3";
-  const outputPath = "videos/short_scene" + (i + 1) + ".mp4";
+  const voicePath = voices/scene${i + 1}.mp3;
+  const outputPath = videos/short_scene${i + 1}.mp4;
 
   if (fs.existsSync(voicePath)) {
     makeVideo(script.short.scenes[i], voicePath, outputPath);

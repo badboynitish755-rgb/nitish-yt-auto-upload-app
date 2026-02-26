@@ -1,24 +1,24 @@
 {
   "short": {
     "format": "SHORTS 9:16",
-    "topic": "OTP late drama",
+    "topic": "Mobile battery 1 percent panic",
     "scenes": [
       "Short Comedy - Funny entry",
-      "Short Comedy - Ultimate funny ending",
-      "Short Comedy - Emotional drama",
+      "Short Comedy - Unexpected twist",
+      "Short Comedy - Overacting moment",
       "Short Comedy - Funny entry"
     ]
   },
   "long": {
     "format": "LONG 16:9",
-    "topic": "Indian parents vs mobile",
+    "topic": "Gym join 2 din quit",
     "scenes": [
-      "Long Comedy - Unexpected twist",
       "Long Comedy - Ultimate funny ending",
       "Long Comedy - Funny entry",
+      "Long Comedy - Emotional drama",
       "Long Comedy - Overacting moment",
       "Long Comedy - Funny entry",
-      "Long Comedy - Overacting moment"
+      "Long Comedy - Unexpected twist"
     ]
   }
 }
