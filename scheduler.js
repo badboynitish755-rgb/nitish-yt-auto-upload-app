@@ -1,31 +1,23 @@
-require("dotenv").config();
-const cron = require("node-cron");
 const express = require("express");
+const cron = require("node-cron");
 
 const app = express();
+
 const PORT = process.env.PORT || 10000;
 
-console.log("🚀 AI YouTube Automation Started");
-
-// ===== Automation Code YAHI LIKHNA =====
-function runAutomation() {
-  console.log("🔥 Running Automation Task...");
-  
-  // Yaha apna actual upload logic likh
-  // Example:
-  console.log("Video Upload Done ✅");
-}
-
-// ===== CRON =====
-cron.schedule("0 9 * * *", runAutomation, { timezone: "Asia/Kolkata" });
-cron.schedule("0 15 * * *", runAutomation, { timezone: "Asia/Kolkata" });
-cron.schedule("0 21 * * *", runAutomation, { timezone: "Asia/Kolkata" });
-
-// ===== Health Route =====
+// Simple route so Render detect kare ki server running hai
 app.get("/", (req, res) => {
-  res.send("🔥 AI YouTube Automation Running Successfully!");
+  res.send("YouTube Auto Upload Scheduler Running");
 });
 
+// Cron job - har 1 minute me chalega (test ke liye)
+cron.schedule("* * * * *", () => {
+  console.log("Cron job is running...");
+  
+  // Yaha tum future me apna YouTube upload logic daal sakte ho
+});
+
+// Server start
 app.listen(PORT, () => {
-  console.log(🌍 Server running on port ${PORT});
+  console.log("Server running on port " + PORT);
 });
