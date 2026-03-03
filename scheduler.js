@@ -1,8 +1,0 @@
-const cron = require("node-cron"); const express = require("express"); const { generateShort } = require("./shortGenerator"); const { generateLong } = require("./longGenerator"); const { uploadVideo } = require("./uploader");
-const app = express(); const PORT = process.env.PORT || 3000;
-// Home Route app.get("/", (req, res) => { res.send("AI YouTube Automation Running 🚀"); });
-// 🔥 Manual Test Route – SHORT app.get("/test-short", async (req, res) => { try { console.log("Manual SHORT Triggered..."); const filePath = await generateShort(); await uploadVideo(filePath, "short"); res.send("Short Uploaded Successfully 🚀"); } catch (error) { console.error(error); res.send("Error in Short Upload"); } });
-// 🔥 Manual Test Route – LONG app.get("/test-long", async (req, res) => { try { console.log("Manual LONG Triggered..."); const filePath = await generateLong(); await uploadVideo(filePath, "long"); res.send("Long Uploaded Successfully 🚀"); } catch (error) { console.error(error); res.send("Error in Long Upload"); } });
-// 🟣 SHORT - 9 AM IST (3:30 UTC) cron.schedule("30 3 * * *", async () => { try { console.log("Generating SHORT..."); const filePath = await generateShort(); await uploadVideo(filePath, "short"); } catch (error) { console.error("Short Cron Error:", error); } });
-// 🔵 LONG - 6 PM IST (12:30 UTC) cron.schedule("30 12 * * *", async () => { try { console.log("Generating LONG..."); const filePath = await generateLong(); await uploadVideo(filePath, "long"); } catch (error) { console.error("Long Cron Error:", error); } });
-app.listen(PORT, () => { console.log("Server Running on port " + PORT); console.log("Scheduler Started..."); });
