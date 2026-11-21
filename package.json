@@ -1,16 +1,18 @@
 {
   "name": "nitish-yt-auto-upload-app",
-  "version": "1.0.0",
-  "main": "scheduler.js",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Cloud based YouTube Shorts automation",
+  "main": "task.js",
   "scripts": {
-    "start": "node scheduler.js"
+    "start": "node task.js",
+    "build": "node task.js"
   },
   "engines": {
-    "node": "18.x"
+    "node": "20.x"
   },
   "dependencies": {
-    "dotenv": "^16.4.0",
-    "express": "^4.18.2",
-    "node-cron": "^3.0.3"
+    "dotenv": "^16.4.7",
+    "googleapis": "^144.0.0"
   }
 }
