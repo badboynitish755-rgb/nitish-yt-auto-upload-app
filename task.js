@@ -1,6 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const { spawnSync } = require("child_process");
+const { uploadVideo } = require("./uploader");
 
 const root = __dirname;
 const videosDir = path.join(root, "videos");
@@ -14,6 +15,7 @@ function run(command, args) {
   });
 
   if (result.error) throw result.error;
+
   if (result.status !== 0) {
     throw new Error(command + " failed with code " + result.status);
   }
@@ -37,9 +39,12 @@ function makeVideo() {
 
   scenes.forEach((scene, index) => {
     const textFile = path.join(workDir, "scene" + index + ".txt");
+
     fs.writeFileSync(textFile, scene, "utf8");
 
-    const safePath = textFile.replace(/\\/g, "/").replace(/:/g, "\\:");
+    const safePath = textFile
+      .replace(/\\/g, "/")
+      .replace(/:/g, "\\:");
 
     filters.push(
       "drawtext=font='DejaVu Sans':textfile='" + safePath +
@@ -71,12 +76,39 @@ function makeVideo() {
   }
 
   console.log("Video created:", output);
+
+  return output;
 }
 
-try {
-  makeVideo();
-  console.log("VIDEO CREATION COMPLETE");
-} catch (error) {
+async function main() {
+  const videoPath = makeVideo();
+
+  const title = "Mummy vs Mobile 😂 | Hindi Comedy Shorts";
+  const description =
+    "Mummy aur mobile ki funny nok-jhok 😂\n\n" +
+    "#Comedy #HindiComedy #Shorts";
+
+  const tags = [
+    "Hindi comedy",
+    "Funny video",
+    "Mummy comedy",
+    "Indian comedy",
+    "Shorts"
+  ];
+
+  console.log("Video upload process starting...");
+
+  await uploadVideo(
+    videoPath,
+    title,
+    description,
+    tags
+  );
+
+  console.log("AUTOMATION COMPLETE");
+}
+
+main().catch((error) => {
   console.error("AUTOMATION ERROR:", error.message);
   process.exitCode = 1;
-}
+});
