@@ -11,7 +11,7 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  prepare:
+  upload:
     runs-on: ubuntu-latest
     timeout-minutes: 30
 
@@ -32,8 +32,9 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-      - name: Check Tools
-        run: |
-          node --version
-          ffmpeg -version
-          echo "Cloud Runner Ready"
+      - name: Run Video Automation
+        env:
+          YOUTUBE_CLIENT_ID: ${{ secrets.YOUTUBE_CLIENT_ID }}
+          YOUTUBE_CLIENT_SECRET: ${{ secrets.YOUTUBE_CLIENT_SECRET }}
+          YOUTUBE_REFRESH_TOKEN: ${{ secrets.YOUTUBE_REFRESH_TOKEN }}
+        run: node task.js
