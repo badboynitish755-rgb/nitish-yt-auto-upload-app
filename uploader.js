@@ -13,7 +13,11 @@ async function uploadVideo(filePath, title, description, tags = []) {
     YOUTUBE_REFRESH_TOKEN
   } = process.env;
 
-  if (!YOUTUBE_CLIENT_ID || !YOUTUBE_CLIENT_SECRET || !YOUTUBE_REFRESH_TOKEN) {
+  if (
+    !YOUTUBE_CLIENT_ID ||
+    !YOUTUBE_CLIENT_SECRET ||
+    !YOUTUBE_REFRESH_TOKEN
+  ) {
     throw new Error("YouTube GitHub Secrets are missing.");
   }
 
@@ -31,7 +35,7 @@ async function uploadVideo(filePath, title, description, tags = []) {
     auth
   });
 
-  console.log("YouTube upload starting...");
+  console.log("Starting PUBLIC YouTube upload...");
 
   const response = await youtube.videos.insert({
     part: ["snippet", "status"],
@@ -43,8 +47,8 @@ async function uploadVideo(filePath, title, description, tags = []) {
         categoryId: "23"
       },
       status: {
-        privacyStatus: "private",
-        selfDeclaredMadeForKids: false
+        privacyStatus: "public",
+        selfDeclaredMadeForKids: true
       }
     },
     media: {
@@ -52,10 +56,11 @@ async function uploadVideo(filePath, title, description, tags = []) {
     }
   });
 
-  console.log("Upload successful!");
+  console.log("PUBLIC Upload successful!");
   console.log("Video ID:", response.data.id);
   console.log(
-    "Video URL: https://www.youtube.com/watch?v=" + response.data.id
+    "Video URL: https://www.youtube.com/watch?v=" +
+    response.data.id
   );
 
   return response.data;
