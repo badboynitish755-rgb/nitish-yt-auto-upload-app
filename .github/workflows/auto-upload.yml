@@ -2,6 +2,9 @@ name: Nitish YT Auto Upload
 
 on:
   workflow_dispatch:
+  schedule:
+    - cron: "30 3 * * *"
+    - cron: "30 12 * * *"
 
 permissions:
   contents: read
@@ -23,11 +26,12 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: npm
 
-      - name: Install FFmpeg
+      - name: Install FFmpeg and Hindi TTS
         run: |
           sudo apt-get update
-          sudo apt-get install -y ffmpeg
+          sudo apt-get install -y ffmpeg espeak-ng
 
       - name: Install Dependencies
         run: npm install
