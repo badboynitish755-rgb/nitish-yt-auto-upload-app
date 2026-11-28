@@ -35,7 +35,7 @@ async function uploadVideo(filePath, title, description, tags = []) {
     auth
   });
 
-  console.log("Starting YouTube PUBLIC upload...");
+  console.log("Starting YouTube upload...");
 
   const response = await youtube.videos.insert({
     part: ["snippet", "status"],
@@ -62,7 +62,6 @@ async function uploadVideo(filePath, title, description, tags = []) {
   console.log("--------------------------------");
   console.log("UPLOAD COMPLETED");
   console.log("Video ID:", videoId);
-  console.log("Requested Privacy: PUBLIC");
   console.log("YouTube Returned Privacy:", privacyStatus);
   console.log(
     "Video URL: https://www.youtube.com/watch?v=" + videoId
@@ -70,12 +69,12 @@ async function uploadVideo(filePath, title, description, tags = []) {
   console.log("--------------------------------");
 
   if (privacyStatus !== "public") {
-    console.log(
-      "WARNING: YouTube did not confirm PUBLIC visibility."
+    throw new Error(
+      "YouTube did not confirm PUBLIC visibility. Please check YouTube Studio."
     );
-  } else {
-    console.log("PUBLIC UPLOAD CONFIRMED!");
   }
+
+  console.log("PUBLIC UPLOAD CONFIRMED!");
 
   return response.data;
 }
